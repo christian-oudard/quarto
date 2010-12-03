@@ -106,3 +106,8 @@
 # Strategy:
 # Play perfectly from ply 10 onward.
 # Before ply 10, use the heuristic of maximizing the number of ways for the opponent to lose?
+
+# How common are positions that force a win in 2 ply? How does this percentage
+# vary by number of pieces on the board? Use monte carlo methods to estimate
+# the percentage. Generate many random boards at each size, then do a 2 ply
+# search on each to determine percentages.

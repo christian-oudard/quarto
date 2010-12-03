@@ -26,4 +26,3 @@ def bot_twoply(board, pieces, current_piece):
             next_piece = random.choice(pieces)
 
     return pos, next_piece
-

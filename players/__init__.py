@@ -1,6 +1,7 @@
 from quarto import SIZE
 
 from players.bot_random import bot_random
+from players.bot_oneply import bot_oneply
 
 def available_squares(board):
     squares = []

@@ -30,23 +30,32 @@ def game(player_a, player_b):
             pieces.remove(current_piece)
         # Current player places the piece at `pos`, and chooses a piece for the opponent.
         pos, next_piece = current_player(copy(board), copy(pieces), current_piece)
-        print('player moved at %s, and chose %s' % (pos, next_piece))
+        #print('player moved at %s, and chose %s' % (pos, next_piece))
         if pos:
             assert board[pos] is None # Don't allow playing on occupied positions.
             board[pos] = current_piece
         current_piece = next_piece
 
-        print(board_string(board))
+        #print(board_string(board))
 
         if is_win(board):
-            print('%s wins!' % current_player.__name__)
+            #print('%s wins!' % current_player.__name__)
             return current_player
 
         if not pieces:
             # Game over, draw.
-            print('draw')
+            #print('draw')
             return None
 
 if __name__ == '__main__':
-    from players import bot_random
-    result = game(bot_random, bot_random)
+    from players import bot_random, bot_oneply
+    oneply_score = 0
+    random_score = 0
+    for _ in range(100):
+        result = game(bot_random, bot_oneply)
+        if result == bot_oneply:
+            oneply_score += 1
+        if result == bot_random:
+            random_score += 1
+    print('oneply:', oneply_score)
+    print('random:', random_score)

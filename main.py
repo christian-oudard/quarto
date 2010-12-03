@@ -24,7 +24,7 @@ def game(player_a, player_b):
             board[(x, y)] = None
 
     current_piece = None
-    for current_player in itertools.cycle([player_a, player_b]):
+    for score, current_player in itertools.cycle([(+1, player_a), (-1, player_b)]):
         # Remove the current piece from available pieces, and give it to the current player.
         if current_piece:
             pieces.remove(current_piece)
@@ -40,22 +40,37 @@ def game(player_a, player_b):
 
         if is_win(board):
             #print('%s wins!' % current_player.__name__)
-            return current_player
+            return score
 
         if not pieces:
             # Game over, draw.
             #print('draw')
-            return None
+            return 0
+
+def match(player_a, player_b, num_games, verbose=False):
+    a_score = 0
+    b_score = 0
+    ties = 0
+    for i in range(num_games):
+        if i % 2 == 0:
+            result = game(player_a, player_b)
+        else:
+            result = -game(player_b, player_a)
+
+        if result == +1:
+            a_score += 1
+        elif result == -1:
+            b_score += 1
+        elif result == 0:
+            ties += 1
+
+    if verbose:
+        print(player_a.__name__, a_score)
+        print(player_b.__name__, b_score)
+        print('ties', ties)
+
+    return (a_score, b_score, ties)
 
 if __name__ == '__main__':
     from players import bot_random, bot_oneply
-    oneply_score = 0
-    random_score = 0
-    for _ in range(100):
-        result = game(bot_random, bot_oneply)
-        if result == bot_oneply:
-            oneply_score += 1
-        if result == bot_random:
-            random_score += 1
-    print('oneply:', oneply_score)
-    print('random:', random_score)
+    a, b, t = match(bot_random, bot_oneply, 1000, verbose=True)

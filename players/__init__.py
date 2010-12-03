@@ -1,22 +1,12 @@
 from quarto import SIZE
 
-import random
+from players.bot_random import bot_random
 
-def bot_random(board, pieces, current_piece):
-    available_squares = []
+def available_squares(board):
+    squares = []
     for x in range(SIZE):
         for y in range(SIZE):
             pos = x, y
             if board.get(pos) is None:
-                available_squares.append(pos)
-    pos = None
-    if current_piece:
-        pos = random.choice(available_squares)
-
-    next_piece = None
-    if pieces:
-        next_piece = random.choice(pieces)
-
-    return pos, next_piece
-
-
+                squares.append(pos)
+    return squares

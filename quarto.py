@@ -55,8 +55,19 @@ def parse_board(board_string):
         for x, c in enumerate(line):
             if c == '-':
                 continue
-            board[(x, y)] = piece_number(int(c, 16))
+            board[(x, y)] = parse_piece(c)
     return board
+
+def parse_piece(c):
+    """
+    >>> parse_piece('0')
+    (False, False, False, False)
+    >>> parse_piece('5')
+    (True, False, True, False)
+    >>> parse_piece('f')
+    (True, True, True, True)
+    """
+    return piece_number(int(c, 16))
 
 def board_string(board):
     """

@@ -27,20 +27,20 @@ def available_squares(board):
 
 def winning_moves(board, piece):
     """
-    >>> from quarto import parse_board, piece_number
+    >>> from quarto import parse_board, parse_piece
     >>> board = parse_board('''
     ...     -086
     ...     cd-3
     ...     -a49
     ...     1b7-
     ... ''')
-    >>> winning_moves(board, piece_number(0x2))
+    >>> winning_moves(board, parse_piece('2'))
     [(0, 0)]
-    >>> winning_moves(board, piece_number(0x5))
+    >>> winning_moves(board, parse_piece('5'))
     [(3, 3)]
-    >>> winning_moves(board, piece_number(0xe))
+    >>> winning_moves(board, parse_piece('e'))
     [(0, 0)]
-    >>> winning_moves(board, piece_number(0xf))
+    >>> winning_moves(board, parse_piece('f'))
     [(3, 3)]
     """
     winning_squares = []

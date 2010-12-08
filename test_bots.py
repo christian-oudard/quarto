@@ -1,6 +1,7 @@
 from quarto import parse_board, parse_piece
 from players.bot_oneply import bot_oneply
 from players.bot_twoply import bot_twoply
+from players.bot_wholeply import bot_wholeply
 
 def test_winning_move():
     # Should take a winning move if it has one.
@@ -10,7 +11,7 @@ def test_winning_move():
         --6a
         f2--
     ''')
-    for bot in [bot_oneply, bot_twoply]:
+    for bot in [bot_oneply, bot_twoply, bot_wholeply]:
         pos, piece = bot(board, pieces=[], current_piece=parse_piece('e'))
         assert pos == (1, 2)
 
@@ -24,6 +25,6 @@ def test_no_lose():
 
     ''')
     available_pieces = [parse_piece(c) for c in '239abcdf']
-    for bot in [bot_twoply]:
+    for bot in [bot_twoply, bot_wholeply]:
         pos, piece = bot(board, pieces=available_pieces, current_piece=None)
         assert piece == parse_piece('a')

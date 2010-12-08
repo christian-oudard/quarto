@@ -5,6 +5,7 @@ from quarto import SIZE, is_win
 from players.bot_random import bot_random
 from players.bot_oneply import bot_oneply
 from players.bot_twoply import bot_twoply
+from players.bot_wholeply import bot_wholeply
 
 def available_squares(board):
     """

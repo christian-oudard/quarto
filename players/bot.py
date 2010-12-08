@@ -111,3 +111,10 @@
 # vary by number of pieces on the board? Use monte carlo methods to estimate
 # the percentage. Generate many random boards at each size, then do a 2 ply
 # search on each to determine percentages.
+
+# Heuristic
+# As a heuristic, should we play the "tightest" move, or the "loosest" move?
+# Tight or loose refers to the number of plays still required to create a win.
+# Do we want to keep the board wide open for as long as possible? Or do we want
+# to play brinksmanship, and come as close to a win as possible without giving
+# to the opponent, so the opponent has to give us a win soon.

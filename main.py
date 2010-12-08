@@ -72,6 +72,7 @@ def match(player_a, player_b, num_games, verbose=False):
     return (a_score, b_score, ties)
 
 if __name__ == '__main__':
-    from players import bot_random, bot_oneply, bot_twoply
-    a, b, t = match(bot_random, bot_oneply, 100, verbose=True)
-    a, b, t = match(bot_twoply, bot_oneply, 100, verbose=True)
+    from players import bot_random, bot_oneply, bot_twoply, bot_wholeply
+    #a, b, t = match(bot_random, bot_oneply, 100, verbose=True)
+    #a, b, t = match(bot_twoply, bot_oneply, 100, verbose=True)
+    a, b, t = match(bot_twoply, bot_wholeply, 100, verbose=True)

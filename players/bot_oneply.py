@@ -9,8 +9,10 @@ def bot_oneply(board, pieces, current_piece):
         winning_squares = winning_moves(board, current_piece)
         if winning_squares:
             pos = random.choice(winning_squares)
+            return pos, None
         else:
             pos = random.choice(squares)
+        board[pos] = current_piece
 
     next_piece = None
     if pieces:

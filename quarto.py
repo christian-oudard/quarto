@@ -1,3 +1,4 @@
+from copy import copy
 from textwrap import dedent
 
 SIZE = 4
@@ -116,3 +117,22 @@ def is_win(board):
             if a == b == c == d:
                 return True
     return False
+
+def make_move(board, piece, pos):
+    # Check bounds.
+    x, y = pos
+    assert 0 <= x < SIZE
+    assert 0 <= y < SIZE
+
+    # Handle missing squares.
+    if pos not in board:
+        board[pos] = None
+
+    # Only allow placing a new piece on an empty square.
+    assert board[pos] is None
+    if piece is not None:
+        assert piece not in board.values()
+
+    board = copy(board)
+    board[pos] = piece
+    return board

@@ -1,6 +1,6 @@
 import itertools
 from copy import copy
-from quarto import SIZE, is_win, board_string
+from quarto import SIZE, is_win, board_string, make_move
 
 # Description of pieces, a 4-dimensional binary space.
 piece_descriptions = {}
@@ -33,7 +33,7 @@ def game(player_a, player_b):
         #print('player moved at %s, and chose %s' % (pos, next_piece))
         if pos:
             assert board[pos] is None # Don't allow playing on occupied positions.
-            board[pos] = current_piece
+            board = make_move(board, current_piece, pos)
         current_piece = next_piece
 
         #print(board_string(board))
